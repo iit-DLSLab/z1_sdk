@@ -58,7 +58,12 @@ PYBIND11_MODULE(unitree_arm_interface, m){
 
     py::class_<CtrlComponents>(m, "CtrlComponents")
         .def_readwrite("armModel", &CtrlComponents::armModel)
+        .def_readwrite("lowcmd", &CtrlComponents::lowcmd)
         .def_readonly("dt", &CtrlComponents::dt)
+        ;
+
+    py::class_<LowlevelCmd>(m, "LowlevelCmd")
+        .def("setControlGain", py::overload_cast<std::vector<double>, std::vector<double>>(&LowlevelCmd::setControlGain))
         ;
 
     py::class_<Z1Model>(m, "Z1Model")

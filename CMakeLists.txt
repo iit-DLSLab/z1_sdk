@@ -26,5 +26,13 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 find_package(pybind11 QUIET)
 if(${pybind11_FOUND})
   pybind11_add_module(unitree_arm_interface examples_py/arm_python_interface.cpp)
-  target_link_libraries(unitree_arm_interface PRIVATE Z1_SDK_${CMAKE_SYSTEM_PROCESSOR})
+  
+  target_include_directories(unitree_arm_interface PRIVATE
+    "$ENV{CONDA_PREFIX}/include/eigen3"
+  )
+
+  target_link_libraries(unitree_arm_interface PRIVATE
+    Z1_SDK_${CMAKE_SYSTEM_PROCESSOR}
+  )
+
 endif()
