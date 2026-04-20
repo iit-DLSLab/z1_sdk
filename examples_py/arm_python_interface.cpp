@@ -64,6 +64,7 @@ PYBIND11_MODULE(unitree_arm_interface, m){
 
     py::class_<LowlevelCmd>(m, "LowlevelCmd")
         .def("setControlGain", py::overload_cast<std::vector<double>, std::vector<double>>(&LowlevelCmd::setControlGain))
+        .def("setGripperGain", py::overload_cast<double, double>(&LowlevelCmd::setGripperGain))
         ;
 
     py::class_<Z1Model>(m, "Z1Model")
